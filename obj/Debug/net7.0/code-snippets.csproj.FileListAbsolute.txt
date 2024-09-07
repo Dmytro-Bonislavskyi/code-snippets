@@ -1,0 +1,15 @@
+C:\projects\coding-challenge-prep\code-snippets\obj\Debug\net7.0\code-snippets.csproj.AssemblyReference.cache
+C:\projects\coding-challenge-prep\code-snippets\obj\Debug\net7.0\code-snippets.GeneratedMSBuildEditorConfig.editorconfig
+C:\projects\coding-challenge-prep\code-snippets\obj\Debug\net7.0\code-snippets.AssemblyInfoInputs.cache
+C:\projects\coding-challenge-prep\code-snippets\obj\Debug\net7.0\code-snippets.AssemblyInfo.cs
+C:\projects\coding-challenge-prep\code-snippets\obj\Debug\net7.0\code-snippets.csproj.CoreCompileInputs.cache
+C:\projects\coding-challenge-prep\code-snippets\bin\Debug\net7.0\code-snippets.exe
+C:\projects\coding-challenge-prep\code-snippets\bin\Debug\net7.0\code-snippets.deps.json
+C:\projects\coding-challenge-prep\code-snippets\bin\Debug\net7.0\code-snippets.runtimeconfig.json
+C:\projects\coding-challenge-prep\code-snippets\bin\Debug\net7.0\code-snippets.dll
+C:\projects\coding-challenge-prep\code-snippets\bin\Debug\net7.0\code-snippets.pdb
+C:\projects\coding-challenge-prep\code-snippets\obj\Debug\net7.0\code-snippets.dll
+C:\projects\coding-challenge-prep\code-snippets\obj\Debug\net7.0\refint\code-snippets.dll
+C:\projects\coding-challenge-prep\code-snippets\obj\Debug\net7.0\code-snippets.pdb
+C:\projects\coding-challenge-prep\code-snippets\obj\Debug\net7.0\code-snippets.genruntimeconfig.cache
+C:\projects\coding-challenge-prep\code-snippets\obj\Debug\net7.0\ref\code-snippets.dll
