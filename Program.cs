@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Collections.Generic;
 using System.Collections.Immutable;
+using System.Threading.Channels;
 
 namespace code_snippets
 {
@@ -147,39 +148,25 @@ namespace code_snippets
         public static string ReverseWords(string str) => string.Join(' ', str.Split(' ').Select(w => string.Concat(w.Reverse())));
         public static int StringToNumber(String str) => Convert.ToInt32(str);
 
-        public static bool IsValidWalk(string[] walk)
-        {
+        //public static bool IsValidWalk(string[] walk)
+        //{
+        //var direction = new Dictionary<char, int[]> { { 'n', new int[] { 0, -1 } }, { 's', new int[] { 0, 1 } }, { 'w', new int[] { 1, 0 } }, { 'e', new int[] { -1, 0 } } };
 
-            var direction = new Dictionary<char, int[]> { { 'n', new int[] { 0, -1 } }, { 's', new int[] { 0, 1 } }, { 'w', new int[] { 1, 0 } }, { 'e', new int[] { -1, 0 } } };
-            //var t = walk.Select(s => { int[] move = direction[s[0]]; int x = move[0]; int y = move[1]; return new int[] { x, y }; }).Select(c => c[0].Sum(); c[1].Sum());
+        //var t = walk.Select(s => { int[] move = direction[s[0]]; return new int[] { move[0], move[1] }; })
+        //    .Aggregate(new int[] { 0, 0 }, (sum, curr) => { sum[0] += curr[0]; sum[1] += curr[1]; return sum; });
+        //}
+        public static bool IsValidWalk(string[] w) => w.Select(x => x[0] == 'n' ? -0.1f : x[0] == 's' ? 0.1f : x[0] == 'w' ? 1f : -1f).Sum() == 0 && w.Length == 10 ? true : false;
+        public static IEnumerable<string> OpenOrSenior(int[][] data) => data.Select(x =>  x[0] >= 55 && x[1] > 7 ? "Senior" : "Open");
 
-            var t = walk.Select(s => { int[] move = direction[s[0]]; return new int[] { move[0], move[1] }; }).Aggregate(new int[] { 0, 0 }, (sum, curr) => { sum[0] += curr[0]; sum[1] += curr[1]; return sum; });
-   // {
-     //   int[] move = direction[s[0]];
-       // return new int[] { move[0], move[1] };
-   // })
-    //.Aggregate(new int[] { 0, 0 }, (acc, curr) =>
-    //{
-     //   acc[0] += curr[0];
-      //  acc[1] += curr[1];
-      //  return acc;
-    //});
-
-            return false;
-        }
-
-        var movements = walk.Select(s =>
-        {
-            int[] move = direction[s[0]];
-            int x = move[0];
-            int y = move[1];
-            return new int[] { x, y };
-        }).ToArray();
-
+        //public static double[] Tribonacci(double[] signature, int n) => n <= 3 ? Tribonacci(new double[] { signature[1], signature[2], signature.Sum() }, --n).Concat(new[] { signature.Sum() }).ToArray() : signature.Reverse().ToArray();
+        public static double[] Tribonacci(double[] signature, int n) => n > 0 ? new double[] { signature[0] }.Concat(Tribonacci(new double[] { signature[1], signature[2], signature.Sum() }, --n)).ToArray() : Array.Empty<double>();// : signature.Reverse().ToArray();
+        public static double[] xbonacci(double[] signature, int n) => n > 0 ? new double[] { signature[0] }.Concat(Tribonacci(signature.Skip(1).Append(signature.Sum()).ToArray() , --n)).ToArray(): Array.Empty<double>();
+        //{1,0,0,0,0,0,1} 10
 
     }
-
 }
+
+
 
     internal class Program
     {
@@ -187,8 +174,8 @@ namespace code_snippets
         {
         //Console.WriteLine(Kata1.Disemvowel("Hello world!"));
         //Console.WriteLine(code_snippets.Kata2.Order("is2 Thi1s T4est 3a"));
-        Console.WriteLine( code_snippets.Kata2.ReverseWords("This is an example!"));
-        }
+        code_snippets.Kata2.xbonacci(new double[] { 1, 0, 0, 0, 0, 0, 1 }, 10).ToList().ForEach(x=> Console.WriteLine(x.ToString()));//.Select(x => { Console.WriteLine(x.ToString()); return x; });
+    }
     }
 
 
