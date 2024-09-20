@@ -3,6 +3,8 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Channels;
+using System.Collections;
+using System.Text;
 
 namespace code_snippets
 {
@@ -103,7 +105,7 @@ namespace code_snippets
 
         public static string AlphabetPosition(string text)
         {
-            return string.Join(' ', text.ToLower().Where(char.IsLetter).Select(c => c -96));
+            return string.Join(' ', text.ToLower().Where(char.IsLetter).Select(c => c - 96));
         }
 
         public static string Longest(string s1, string s2)
@@ -156,14 +158,35 @@ namespace code_snippets
         //    .Aggregate(new int[] { 0, 0 }, (sum, curr) => { sum[0] += curr[0]; sum[1] += curr[1]; return sum; });
         //}
         public static bool IsValidWalk(string[] w) => w.Select(x => x[0] == 'n' ? -0.1f : x[0] == 's' ? 0.1f : x[0] == 'w' ? 1f : -1f).Sum() == 0 && w.Length == 10 ? true : false;
-        public static IEnumerable<string> OpenOrSenior(int[][] data) => data.Select(x =>  x[0] >= 55 && x[1] > 7 ? "Senior" : "Open");
+        public static IEnumerable<string> OpenOrSenior(int[][] data) => data.Select(x => x[0] >= 55 && x[1] > 7 ? "Senior" : "Open");
 
         //public static double[] Tribonacci(double[] signature, int n) => n <= 3 ? Tribonacci(new double[] { signature[1], signature[2], signature.Sum() }, --n).Concat(new[] { signature.Sum() }).ToArray() : signature.Reverse().ToArray();
         public static double[] Tribonacci(double[] signature, int n) => n > 0 ? new double[] { signature[0] }.Concat(Tribonacci(new double[] { signature[1], signature[2], signature.Sum() }, --n)).ToArray() : Array.Empty<double>();// : signature.Reverse().ToArray();
-        public static double[] xbonacci(double[] signature, int n) => n > 0 ? new double[] { signature[0] }.Concat(Tribonacci(signature.Skip(1).Append(signature.Sum()).ToArray() , --n)).ToArray(): Array.Empty<double>();
+        public static double[] xbonacci(double[] signature, int n) => n > 0 ? new double[] { signature[0] }.Concat(Tribonacci(signature.Skip(1).Append(signature.Sum()).ToArray(), --n)).ToArray() : Array.Empty<double>();
         //{1,0,0,0,0,0,1} 10
-
-    }
+        public static int sumTwoSmallestNumbers(int[] n) => n.OrderBy(x => x).Take(2).Sum();
+        public static bool IsSquare(int n) => Math.Sqrt(n) % 1 == 0;
+        //public static string HighAndLow2(string n) =>  string.Join(n.Split(" ").Select(c=>int.Parse(c)).Where((f,i) => i==0 || i==n.Split(" ").Length - 1));//string.Concat(n.ToList().OrderBy(o => o).ToList().RemoveRange(1, n.ToList().Count() - 2));
+        public static string HighAndLow(string n) => $"{n.Split(" ").Select(int.Parse).Max()} {n.Split(" ").Select(int.Parse).Min()}";
+        public static double FindAverage(double[] array) => array.DefaultIfEmpty().Average();
+        public static string CountSheep(int n) => string.Concat(Enumerable.Range(1, n).Select(j => $"{j} sheep..."));
+        public static string CountSheep2(int n) => string.Concat(new int[n].Select((_, i) => $"{i + 1} sheep..."));
+        //public static IEnumerable<int> GetIntegersFromList(List<object> l) => l.Where(x => int.TryParse(x.ToString(), out int r)).Select(v => int.Parse(v.ToString()));
+        //public static IEnumerable<int> GetIntegersFromList(List<object> l) => l.Where(x => x.GetType() == typeof(int)).Select(c=>(int)c);
+        public static IEnumerable<int> GetIntegersFromList(List<object> l) => l.OfType<int>();
+        public static string seriesSum(int n) => Math.Round((decimal)Enumerable.Range(0, n).Select((_, i) => 1 / (i * 3M + 1M)).Sum(), 2).ToString("0.00");
+        public static string SeriesSum(int n) => Enumerable.Range(0, n).Sum(i => 1.0 / (i * 3 + 1)).ToString("0.00");
+        public static string RepeatStr(int n, string s) => $"{string.Concat(Enumerable.Range(1, n).Select((_, i) => s))}";
+        public static string repeatStr(int n, string s) => String.Concat(Enumerable.Repeat(s, n));
+        public static long findNb(long m)
+        {
+            long i = 1;
+            for (; m > 0; i++)
+            { Console.WriteLine($"{m}      {i}"); m -= i * i * i; }
+            return m == 0 ? i - 1 : -1;
+        }
+        public static string RemoveExclamationMarks(string s) => s.Remove("!");
+    }  
 }
 
 
@@ -174,7 +197,8 @@ namespace code_snippets
         {
         //Console.WriteLine(Kata1.Disemvowel("Hello world!"));
         //Console.WriteLine(code_snippets.Kata2.Order("is2 Thi1s T4est 3a"));
-        code_snippets.Kata2.xbonacci(new double[] { 1, 0, 0, 0, 0, 0, 1 }, 10).ToList().ForEach(x=> Console.WriteLine(x.ToString()));//.Select(x => { Console.WriteLine(x.ToString()); return x; });
+        //code_snippets.Kata2.xbonacci(new double[] { 1, 0, 0, 0, 0, 0, 1 }, 10).ToList().ForEach(x=> Console.WriteLine(x.ToString()));//.Select(x => { Console.WriteLine(x.ToString()); return x; });
+        code_snippets.Kata2.findNb(2304422822859502500);
     }
     }
 
