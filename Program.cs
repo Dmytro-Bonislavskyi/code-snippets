@@ -185,9 +185,17 @@ namespace code_snippets
             { Console.WriteLine($"{m}      {i}"); m -= i * i * i; }
             return m == 0 ? i - 1 : -1;
         }
-        public static string RemoveExclamationMarks(string s) => s.Remove("!");
-    }  
-}
+        public static string RemoveExclamationMarks(string s) => s.Replace("!","");
+        public static string FakeBin(string x) => string.Join("", x.Select(d => d > 52 ? 1 : 0));
+        public static int[] ReverseSeq(int n) => Enumerable.Range(1, n).Reverse().ToArray();
+        public static int СenturyFromYear(int y) => (y % 100 == 0) ? y / 100 : y / 100 + 1;
+        public int GetSum(int a, int b) => Enumerable.Range(Math.Min(a, b), Math.Abs(a) + Math.Abs(b)).Sum();
+        public static int Grow(int[] x) => x.Aggregate((agg, cur) => agg *= cur);
+        public static char GetGrade(int s1, int s2, int s3) => new Dictionary<int, char> { { 0, 'F' }, { 1, 'F' }, { 2, 'F' }, { 3, 'F' }, { 4, 'F' }, { 5, 'F' }, { 6, 'D' }, { 7, 'C' }, { 8, 'B' }, { 9, 'A' }, { 10, 'A' } }[(s1 + s2 + s3) / 30];
+        public static int GetUnique(IEnumerable<int> n) => n.ToLookup(v => v).Where(c => c.Count() == 1).Select(x => x.Key).FirstOrDefault();
+        public static int GetUnique2(IEnumerable<int> numbers)=> numbers.First(x => numbers.Count(i => i == x) == 1);
+        public static int GetUnique3(IEnumerable<int> numbers)=>numbers.GroupBy(x => x).Single(x => x.Count() == 1).Key;
+
 
 
 
