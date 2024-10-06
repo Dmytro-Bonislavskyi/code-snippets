@@ -198,7 +198,6 @@ namespace code_snippets
 
 
 
-
     internal class Program
     {
         static void Main(string[] args)
