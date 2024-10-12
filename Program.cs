@@ -5,6 +5,7 @@ using System.Collections.Immutable;
 using System.Threading.Channels;
 using System.Collections;
 using System.Text;
+using System.Security.Cryptography;
 
 namespace code_snippets
 {
@@ -185,7 +186,7 @@ namespace code_snippets
             { Console.WriteLine($"{m}      {i}"); m -= i * i * i; }
             return m == 0 ? i - 1 : -1;
         }
-        public static string RemoveExclamationMarks(string s) => s.Replace("!","");
+        public static string RemoveExclamationMarks(string s) => s.Replace("!", "");
         public static string FakeBin(string x) => string.Join("", x.Select(d => d > 52 ? 1 : 0));
         public static int[] ReverseSeq(int n) => Enumerable.Range(1, n).Reverse().ToArray();
         public static int СenturyFromYear(int y) => (y % 100 == 0) ? y / 100 : y / 100 + 1;
@@ -193,21 +194,35 @@ namespace code_snippets
         public static int Grow(int[] x) => x.Aggregate((agg, cur) => agg *= cur);
         public static char GetGrade(int s1, int s2, int s3) => new Dictionary<int, char> { { 0, 'F' }, { 1, 'F' }, { 2, 'F' }, { 3, 'F' }, { 4, 'F' }, { 5, 'F' }, { 6, 'D' }, { 7, 'C' }, { 8, 'B' }, { 9, 'A' }, { 10, 'A' } }[(s1 + s2 + s3) / 30];
         public static int GetUnique(IEnumerable<int> n) => n.ToLookup(v => v).Where(c => c.Count() == 1).Select(x => x.Key).FirstOrDefault();
-        public static int GetUnique2(IEnumerable<int> numbers)=> numbers.First(x => numbers.Count(i => i == x) == 1);
-        public static int GetUnique3(IEnumerable<int> numbers)=>numbers.GroupBy(x => x).Single(x => x.Count() == 1).Key;
-
-
-
-    internal class Program
-    {
-        static void Main(string[] args)
+        public static int GetUnique2(IEnumerable<int> numbers) => numbers.First(x => numbers.Count(i => i == x) == 1);
+        public static int GetUnique3(IEnumerable<int> numbers) => numbers.GroupBy(x => x).Single(x => x.Count() == 1).Key;
+        public static int[] minMax(int[] lst) => new int[] { lst.Min(), lst.Max() };
+        public static string High(string s)
         {
-        //Console.WriteLine(Kata1.Disemvowel("Hello world!"));
-        //Console.WriteLine(code_snippets.Kata2.Order("is2 Thi1s T4est 3a"));
-        //code_snippets.Kata2.xbonacci(new double[] { 1, 0, 0, 0, 0, 0, 1 }, 10).ToList().ForEach(x=> Console.WriteLine(x.ToString()));//.Select(x => { Console.WriteLine(x.ToString()); return x; });
-        code_snippets.Kata2.findNb(2304422822859502500);
+
+            //var rds = s.Split().Select((w, i) => { w.Aggregate((agr, cur) => agr += cur); return (w, i); }).Max(x => { x.w; return x.i; } ) ;
+            //.Aggregate((agr, cur) => agr += Convert.ToUInt32(cur));
+            var result = s.Split()
+                .Select( w => (Word: w, Sum: w.Aggregate(0, (agr, cur) => agr + cur)))
+                .OrderByDescending(x => x.Sum)
+                .First().Word;
+
+            return result;
+        }
+
+
+        internal class Program
+        {
+            static void Main(string[] args)
+            {
+                //Console.WriteLine(Kata1.Disemvowel("Hello world!"));
+                //Console.WriteLine(code_snippets.Kata2.Order("is2 Thi1s T4est 3a"));
+                //code_snippets.Kata2.xbonacci(new double[] { 1, 0, 0, 0, 0, 0, 1 }, 10).ToList().ForEach(x=> Console.WriteLine(x.ToString()));//.Select(x => { Console.WriteLine(x.ToString()); return x; });
+                Console.WriteLine(code_snippets.Kata2.High("man i need a taxi up to ubud"));
+            }
+        }
     }
-    }
+}
 
 
 
