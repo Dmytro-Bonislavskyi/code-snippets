@@ -6,6 +6,7 @@ using System.Threading.Channels;
 using System.Collections;
 using System.Text;
 using System.Security.Cryptography;
+using System.Text.RegularExpressions;
 
 namespace code_snippets
 {
@@ -197,21 +198,24 @@ namespace code_snippets
         public static int GetUnique2(IEnumerable<int> numbers) => numbers.First(x => numbers.Count(i => i == x) == 1);
         public static int GetUnique3(IEnumerable<int> numbers) => numbers.GroupBy(x => x).Single(x => x.Count() == 1).Key;
         public static int[] minMax(int[] lst) => new int[] { lst.Min(), lst.Max() };
-        public static string High(string s)
+        public static string High2(string s)
         {
-
-            //var rds = s.Split().Select((w, i) => { w.Aggregate((agr, cur) => agr += cur); return (w, i); }).Max(x => { x.w; return x.i; } ) ;
-            //.Aggregate((agr, cur) => agr += Convert.ToUInt32(cur));
             var result = s.Split()
-                .Select( w => (Word: w, Sum: w.Aggregate(0, (agr, cur) => agr + cur)))
+                .Select( (w, i) => (Word: w, Index: i, Sum: w.Aggregate(0, (agr, cur) => agr + cur)))
                 .OrderByDescending(x => x.Sum)
                 .First().Word;
-
             return result;
         }
+        public static string High(string s) => s.Split().Select(w => (W: w, V: w.Sum(l => l - 'a' + 1))).OrderByDescending(o => o.V).First().W;
+        public static string High3(string s) => s.Split().OrderBy(a => a.Select(b => b - 96).Sum()).Last();
+        public static int CountSmileys(string[] s) => new HashSet<string> { ":)", ":-)", ";)", ";-)", ";D", ":D", ":-D", ";)", ";-D", ":~)", ";~D", ":~D", ";~)" }.Count(s.Contains);
+        public static int CountSmileys2(string[] smileys) => Regex.Matches(string.Join(" ", smileys), "([:;][-~]?)[)D]").Count;
+
+    }
 
 
-        internal class Program
+
+internal class Program
         {
             static void Main(string[] args)
             {
@@ -220,6 +224,7 @@ namespace code_snippets
                 //code_snippets.Kata2.xbonacci(new double[] { 1, 0, 0, 0, 0, 0, 1 }, 10).ToList().ForEach(x=> Console.WriteLine(x.ToString()));//.Select(x => { Console.WriteLine(x.ToString()); return x; });
                 Console.WriteLine(code_snippets.Kata2.High("man i need a taxi up to ubud"));
             }
+            public static int CountSmileys(string[] s) => s.Where(f => f.Replace(new char[] ":;-~D)", "").Count == 0);
         }
     }
 }
