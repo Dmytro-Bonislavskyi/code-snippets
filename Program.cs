@@ -210,12 +210,14 @@ namespace code_snippets
         public static string High3(string s) => s.Split().OrderBy(a => a.Select(b => b - 96).Sum()).Last();
         public static int CountSmileys(string[] s) => new HashSet<string> { ":)", ":-)", ";)", ";-)", ";D", ":D", ":-D", ";)", ";-D", ":~)", ";~D", ":~D", ";~)" }.Count(s.Contains);
         public static int CountSmileys2(string[] smileys) => Regex.Matches(string.Join(" ", smileys), "([:;][-~]?)[)D]").Count;
+        public static int[] CountPositivesSumNegatives(int[] i) => i != null && i.Length > 0 ? new int[] { i.Count(n => n > 0), i.Aggregate(0, (agg, cur) => cur < 0 ? agg += cur : agg) } : Array.Empty<int>();
+
 
     }
 
 
 
-internal class Program
+    internal class Program
         {
             static void Main(string[] args)
             {
@@ -224,10 +226,11 @@ internal class Program
                 //code_snippets.Kata2.xbonacci(new double[] { 1, 0, 0, 0, 0, 0, 1 }, 10).ToList().ForEach(x=> Console.WriteLine(x.ToString()));//.Select(x => { Console.WriteLine(x.ToString()); return x; });
                 Console.WriteLine(code_snippets.Kata2.High("man i need a taxi up to ubud"));
             }
-            public static int CountSmileys(string[] s) => s.Where(f => f.Replace(new char[] ":;-~D)", "").Count == 0);
+
         }
     }
 }
+
 
 
 
