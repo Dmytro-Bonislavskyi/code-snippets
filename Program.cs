@@ -202,7 +202,7 @@ namespace code_snippets
         {
             var result = s.Split()
                 .Select( (w, i) => (Word: w, Index: i, Sum: w.Aggregate(0, (agr, cur) => agr + cur)))
-                .OrderByDescending(x => x.Sum)
+                .OrderByDescending(x => x.Sum) 
                 .First().Word;
             return result;
         }
