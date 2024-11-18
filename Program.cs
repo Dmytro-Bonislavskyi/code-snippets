@@ -212,7 +212,7 @@ namespace code_snippets
         public static int CountSmileys2(string[] smileys) => Regex.Matches(string.Join(" ", smileys), "([:;][-~]?)[)D]").Count;
         public static int[] CountPositivesSumNegatives(int[] i) => i != null && i.Length > 0 ? new int[] { i.Count(n => n > 0), i.Aggregate(0, (agg, cur) => cur < 0 ? agg += cur : agg) } : Array.Empty<int>();
         public static bool lovefunc(int flower1, int flower2) => flower1 % 2 != flower2 % 2;
-        public static IEnumerable<string> FriendOrFoe(string[] names) => names.Where(n => n.Count() == 4);
+        public static IEnumerable<string> FriendOrFoe(string[] names) => names.Where(n => n.Count() == 5);
 
 
 
