@@ -224,6 +224,7 @@ namespace code_snippets
                 //Console.WriteLine(code_snippets.Kata2.Order("is2 Thi1s T4est 3a"));
                 //code_snippets.Kata2.xbonacci(new double[] { 1, 0, 0, 0, 0, 0, 1 }, 10).ToList().ForEach(x=> Console.WriteLine(x.ToString()));//.Select(x => { Console.WriteLine(x.ToString()); return x; });
                 Console.WriteLine(code_snippets.Kata2.High("man i need a taxi up to ubud"));
+
             }
 
         }
